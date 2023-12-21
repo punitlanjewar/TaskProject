@@ -1,0 +1,20 @@
+{% extends 'patientnavbar.html' %}
+
+{% block content %}
+<div class="containter mt-5">
+    <div class="col-4 mx-auto card p-3 shadow">
+    <h3 align="center"><b> Blog Posts List </b></h3>
+    {% for category in Category %} 
+    <hr>   
+    <h5 align="center"><b>{{ category.category_name }}</b></h5><br>
+    {% for i in Posts %}
+        {% if i.category == category %}    
+            <p align="center"><b>Title:</b> {{ i.title }}</p>
+            <p align="center"><b>Image:</b> <img src="/media/{{ i.image }}" class="rounded border-dark" style="height: 100px;"></p>
+            <p align="center"><b>Summary:</b> {{ i.summary|slice:":15" }}{% if i.summary|length > 15 %}...{% endif %}</p>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    </div>
+    </div>
+{% endblock %}

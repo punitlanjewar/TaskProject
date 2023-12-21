@@ -1,0 +1,43 @@
+{% extends 'doctornavbar.html' %}
+
+{% block content %}
+<div class="containter mt-5">
+    <form class="col-4 mx-auto card p-3 shadow" method="post" action="upload_blog" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h3 align="center">Upload Blog</h3>
+        <hr>
+        <h4 align="center" style="color: green;">{{ Msg }}</h4>
+        <div class="mb-3">
+            <label class="form-label">Title:</label>
+            <input type="text" required class="form-control" name="txtTitle">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Image:</label>
+            <input type="file" required class="form-control" name="txtImage">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Category:</label>
+            <select class="form-select" name="txtCategory">
+                <option>--Select Category--</option>
+            {% for category in categories %}
+                <option>{{ category.category_name }}</option>
+            {% endfor %}
+        </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Summary:</label>
+            <textarea class="form-control" name="txtSummary"></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Content:</label>
+            <textarea class="form-control" name="txtContent"></textarea>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label" for="is_draft">Mark as Draft</label>
+            <input class="form-check-input" type="checkbox" name="chkDraft">
+          </div>
+            <button type="submit" class="btn btn-success mb-2">Upload Blog</button>
+            <a href="" class="btn btn-primary">Display Blog</a>
+      </form>       
+</div>
+{% endblock %}

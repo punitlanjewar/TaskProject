@@ -1,0 +1,55 @@
+{% extends 'base.html' %} <!-- it will inherit the base.html file -->
+
+{% block content %}
+    <div class="containter mt-5">
+        <form class="col-4 mx-auto card p-3 shadow" method="post" action="doctor_signup" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h3 align="center">Doctor SignUp Here</h3>
+            <hr>
+            <h4 align="center" style="color:green">{{ Success1 }}</h4>
+            <h4 align="center" style="color: red;">{{ Msg1 }}</h4>
+            <div class="mb-3">
+                <label class="form-label">First Name:</label>
+                <input type="text" required class="form-control" name="txtFirstName1">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Last Name:</label>
+                <input type="text" required class="form-control" name="txtLastName1">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Profile Picture:</label>
+                <input type="file" class="form-control" name="txtProfilePicture1">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Username:</label>
+                <input type="text" required class="form-control" name="txtUsername1">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email Id:</label>
+                <input type="email" required class="form-control" name="txtEmailId1">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password:</label>
+                <input type="password" required class="form-control" name="txtPassword1">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Confirm Password:</label>
+                <input type="password" required class="form-control" name="txtConfirmPassword1">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Address:</label>
+                <textarea class="form-control" required name="txtAddress1"></textarea>
+                <label class="form-label">Line1:</label>
+                <input type="text" required class="form-control" name="txtLine1">
+                <label class="form-label">City:</label>
+                <input type="text" required class="form-control" name="txtCity1">
+                <label class="form-label">State:</label>
+                <input type="text" required class="form-control" name="txtState1">
+                <label class="form-label">PinCode:</label>
+                <input type="number" required class="form-control" name="txtPinCode1">
+            </div>
+                <button type="submit" class="btn btn-success mb-2">Signup</button>
+                <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+          </form>       
+    </div>
+{% endblock %}

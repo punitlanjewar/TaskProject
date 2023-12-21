@@ -1,0 +1,22 @@
+{% extends 'base.html' %} <!-- it will inherit the base.html file -->
+
+{% block content %}
+    <div class="containter mt-5">
+        <form class="col-4 mx-auto card p-3 shadow" method="post">
+            {% csrf_token %}
+            <h3 align="center">Login Here</h3>
+            <hr>
+            <h4 align="center" style="color:red">{{ Msg }}</h4>
+            <div class="mb-3">
+                <label class="form-label">Username:</label>
+                <input type="text" required class="form-control" name="txtUsername">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password:</label>
+                <input type="password" required class="form-control" name="txtPassword">
+                <a href="{% url 'patient_signup' %}">Patient Signup Here</a> | <a href="{% url 'doctor_signup' %}">Doctor Signup Here</a>
+            </div>
+                <button type="submit" class="btn btn-success">Login</button>
+          </form>       
+    </div>
+{% endblock %}

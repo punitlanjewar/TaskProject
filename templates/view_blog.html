@@ -1,0 +1,19 @@
+{% extends 'doctornavbar.html' %}
+
+{% block content %}
+    <div class="containter mt-5">
+        <div class="col-4 mx-auto card p-3 shadow">
+        <h3 align="center"><b>Uploaded Blog Posts</b></h3>
+        <hr>
+            {% for i in PostData %}
+                <p align="center"><b>Title:</b> {{ i.title }}</p>
+                <p align="center"><b>Category:</b> {{ i.category.category_name }}</p>
+                <p align="center"><b>Summary:</b> {{ i.summary }}</p>
+                <p align="center"><b>Content:</b> {{ i.content }}</p>
+                <p align="center"><b>Draft:</b> {{ i.draft }}</p>
+                <p align="center"><b>Image:</b> <img src="/media/{{ i.image }}" class="rounded border-dark" style="height: 100px;"></p>
+                <hr>
+            {% endfor %}
+        </div>
+    </div>        
+{% endblock %}
