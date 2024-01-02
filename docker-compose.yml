@@ -1,0 +1,13 @@
+version: '3'
+services:
+  web:
+    build: .
+    command: "python manage.py makemigrations && python manage.py migrate && python manage.py runserver"
+    container_name: hotelmanage
+    volumes:
+      - .:/hotelmanage
+    ports:
+      - "8000:8000" 
+    environment:
+      - DATABASE_URL=mysql://db_user:db_password@mysql:3306/db_name
+             
