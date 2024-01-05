@@ -23,3 +23,9 @@ class BlogPost(models.Model):
     content = models.TextField()
     draft = models.BooleanField(default=False)
 
+
+class BookAppointment(models.Model):
+    speciality = models.CharField(max_length=200)
+    appointment_date = models.DateField()
+    appointment_time = models.TimeField()
+    end_time = models.TimeField()

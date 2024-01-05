@@ -1,0 +1,18 @@
+{% extends 'patientnavbar.html' %}
+
+{% block title %}Appointment Details{% endblock %}
+
+{% block content %}
+<div class="containter mt-5">
+    <div class="col-4 mx-auto card p-3 shadow">
+    <h3 align="center">Appointment Details</h3>
+    <hr>
+    <p align="center">First Name: {{ first_name }}</p>
+    <p align="center">Last Name: {{ last_name }}</p>
+    <p align="center">Appointment Date: {{ appointment.appointment_date }}</p>
+    <p align="center">Appointment Start Time: {{ appointment.appointment_time }}</p>
+    <p align="center">Appointment End Time: {{ appointment.end_time }}</p>
+    <hr>
+    </div>
+</div>    
+{% endblock %}

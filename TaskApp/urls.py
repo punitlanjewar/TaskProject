@@ -14,6 +14,9 @@ urlpatterns = [
     path('upload_blog', views.blog_post_page, name='upload_blog'),
     path('blog_view', views.display_blog_page, name='blog_view'),
     path('blog_list', views.blog_list_page, name='blog_list'),
+    path('doctors_list', views.doctors_list, name='doctors_list'),
+    path('book_appointment/<int:id>', views.book_appointment, name='book_appointment'),
+    path('display_appointment', views.display_appointments, name='display_appointment'),
     path('logout', views.logout_fun, name='logout'),
 
 ]

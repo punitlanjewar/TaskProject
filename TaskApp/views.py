@@ -1,12 +1,12 @@
 from django.shortcuts import render
-
-# Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
-from .models import BlogCategory, BlogPost, CustomUser
+from .models import BlogCategory, BlogPost, BookAppointment, CustomUser
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
+from datetime import datetime, timedelta
+
 # Create your views here.
 
 
@@ -163,6 +163,33 @@ def blog_list_page(request):
     posts = BlogPost.objects.filter(draft=False)
     return render(request, 'blog_list.html', {'Posts': posts, 'Category': category})
 
+def doctors_list(request):
+    doctors = CustomUser.objects.filter(is_superuser=True)
+    return render(request, 'doctor_list.html', {'Doctors': doctors})
+
+
+def book_appointment(request, id):
+    a1 = CustomUser.objects.get(id=id)
+    if request.method == 'POST':
+        a1.first_name = request.POST['txtFirstName']
+        a1.last_name = request.POST['txtLastName']
+        a1.save()
+        a2 = BookAppointment()
+        a2.speciality = request.POST['txtSpeciality']
+        a2.appointment_date = request.POST['txtAppointmentDate']
+        a2.appointment_time = request.POST['txtStartTime']
+         # Calculate end time (start time + 45 minutes)
+        start_time = datetime.strptime(a2.appointment_time, '%H:%M')
+        end_time = start_time + timedelta(minutes=45)
+        a2.end_time = end_time.strftime('%H:%M')
+        a2.save()
+        appointments = BookAppointment.objects.all()
+        return render(request, 'appointment_details.html', {'appointment': a2, 'first_name': a1.first_name, 'last_name': a1.last_name})
+    return render(request, 'book_appointment.html', {'CustomUser': a1})
+
+def display_appointments(request):
+    appointments = BookAppointment.objects.all()
+    return render(request, 'display_aappointments.html', {'appointment': appointments})
 
 def logout_fun(request):
     logout(request)
